@@ -1,0 +1,21 @@
+{
+  "name": "brandwonden",
+  "version": "1.0.0",
+  "description": "Brandwonden website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp",
+    "build": "gulp build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.69.5",
+    "gulp-file-include": "^2.3.0",
+    "browser-sync": "^2.29.3",
+    "gulp-autoprefixer": "^8.0.0"
+  }
+}

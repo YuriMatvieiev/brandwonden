@@ -1,0 +1,7 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.000000" height="48.000000" fill="none" customFrame="#000000">
+	<rect id="Type=mail-open, Size=48x48" width="48.000000" height="48.000000" x="0.000000" y="0.000000" />
+	<path id="Vector" d="M10 24L10 8C10 5.79086 11.7909 4 14 4L34 4C36.2092 4 38 5.79086 38 8L38 24" fill-rule="nonzero" stroke="rgb(36,36,36)" stroke-width="1.5" />
+	<path id="Vector" d="M19 20L29 20M19 12L29 12" fill-rule="nonzero" stroke="rgb(36,36,36)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+	<path id="Vector" d="M38 14L43.4142 19.4142C43.7892 19.7893 44 20.298 44 20.8284L44 40C44 42.2092 42.2092 44 40 44L8 44C5.79086 44 4 42.2092 4 40L4 20.8284C4 20.298 4.21072 19.7893 4.58578 19.4142L10 14" fill-rule="nonzero" stroke="rgb(36,36,36)" stroke-linejoin="round" stroke-width="1.5" />
+	<path id="Vector" d="M44 20L25.7888 29.1056C24.6628 29.6686 23.3372 29.6686 22.2112 29.1056L4 20" fill-rule="nonzero" stroke="rgb(36,36,36)" stroke-linejoin="round" stroke-width="1.5" />
+</svg>

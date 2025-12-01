@@ -1,0 +1,8 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48.000000" height="48.000000" fill="none" customFrame="#000000">
+	<rect id="Type=maps-location, Size=48x48" width="48.000000" height="48.000000" x="0.000000" y="0.000000" />
+	<path id="Vector" d="M44 19.9999L44 11.9999C44 10.8954 43.1046 9.99992 42 9.99992L30 9.99992L16.8526 4.36532C16.3119 4.13358 15.6965 4.15166 15.1703 4.41476L5.10558 9.44714C4.428 9.78592 4 10.4784 4 11.236L4 35.2251C4 36.5901 5.3374 37.5541 6.63246 37.1225L16 33.9999L22 36.5713" fill-rule="nonzero" stroke="rgb(36,36,36)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+	<path id="Vector" d="M0 0L30 0" stroke="rgb(36,36,36)" stroke-linejoin="round" stroke-width="1.5" transform="matrix(0,1,-1,0,16,4)" />
+	<path id="Vector" d="M0 0L9 0" stroke="rgb(36,36,36)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" transform="matrix(0,1,-1,0,30,10)" />
+	<path id="Vector" d="M28 32.0808C28 36.8954 32.3582 39.3232 35.0844 42.7092C35.5452 43.2816 36.4762 43.2964 36.9474 42.7322C39.7208 39.4108 44 36.8016 44 32.0808C44 27.6178 40.4182 24 36 24C31.5818 24 28 27.6178 28 32.0808Z" fill-rule="nonzero" stroke="rgb(36,36,36)" stroke-linejoin="round" stroke-width="1.5" />
+	<path id="Vector" d="M36 32L36.018 32" stroke="rgb(36,36,36)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+</svg>
