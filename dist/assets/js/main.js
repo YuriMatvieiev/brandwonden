@@ -899,4 +899,93 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", function () {
     initSubcategoryToggles();
   });
+
+  // Handle search container click - focus input
+  const searchContainers = document.querySelectorAll(".header__search");
+  const isMediumScreen = window.matchMedia(
+    "(min-width: 1025px) and (max-width: 1439px)"
+  );
+
+  searchContainers.forEach((searchContainer) => {
+    const searchInput = searchContainer.querySelector(".header__search-input");
+    const headerRight = searchContainer.closest(".header__right");
+    const actionsContainer = headerRight
+      ? headerRight.querySelector(".header__actions")
+      : null;
+    const ctaButton = actionsContainer
+      ? actionsContainer.querySelector(".header__cta-primary")
+      : null;
+
+    if (searchInput) {
+      searchContainer.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        // For medium screens (1025px-1439px), toggle active state
+        if (isMediumScreen.matches && ctaButton) {
+          searchContainer.classList.add("header__search--active");
+          if (actionsContainer) {
+            actionsContainer.classList.add("header__actions--search-active");
+          }
+        }
+
+        searchInput.focus();
+      });
+
+      // Handle blur - hide input and show button if input is empty (medium screens only)
+      searchInput.addEventListener("blur", function () {
+        if (isMediumScreen.matches && ctaButton && !this.value.trim()) {
+          // Small delay to allow clicking on other elements
+          setTimeout(() => {
+            if (document.activeElement !== searchInput) {
+              searchContainer.classList.remove("header__search--active");
+              if (actionsContainer) {
+                actionsContainer.classList.remove(
+                  "header__actions--search-active"
+                );
+              }
+            }
+          }, 200);
+        }
+      });
+
+      // Keep active state if input has value (medium screens only)
+      searchInput.addEventListener("input", function () {
+        if (isMediumScreen.matches && ctaButton) {
+          if (this.value.trim()) {
+            searchContainer.classList.add("header__search--active");
+            if (actionsContainer) {
+              actionsContainer.classList.add("header__actions--search-active");
+            }
+          } else {
+            // Only remove if not focused
+            if (document.activeElement !== this) {
+              searchContainer.classList.remove("header__search--active");
+              if (actionsContainer) {
+                actionsContainer.classList.remove(
+                  "header__actions--search-active"
+                );
+              }
+            }
+          }
+        }
+      });
+    }
+  });
+
+  // Update on window resize
+  window.addEventListener("resize", function () {
+    if (!isMediumScreen.matches) {
+      // Remove active class if resized outside medium screen range
+      searchContainers.forEach((searchContainer) => {
+        searchContainer.classList.remove("header__search--active");
+        const headerRight = searchContainer.closest(".header__right");
+        const actionsContainer = headerRight
+          ? headerRight.querySelector(".header__actions")
+          : null;
+        if (actionsContainer) {
+          actionsContainer.classList.remove("header__actions--search-active");
+        }
+      });
+    }
+  });
 });

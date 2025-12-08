@@ -4,6 +4,7 @@ const fileInclude = require("gulp-file-include");
 const browserSync = require("browser-sync").create();
 const autoprefixer = require("gulp-autoprefixer");
 const concat = require("gulp-concat");
+const os = require("os");
 
 // Paths
 const paths = {
@@ -74,34 +75,70 @@ function bundleComponentJs() {
     .pipe(browserSync.stream());
 }
 
-// Browser Sync
-function serve() {
-  browserSync.init(
-    {
-      server: {
-        baseDir: "./dist",
-      },
-      port: 3000,
-      // Use listen instead of host for better compatibility
-      listen: "0.0.0.0",
-      open: false, // Don't auto-open browser
-      notify: false, // Disable notifications
-      ui: {
-        port: 3001,
-      },
-      // Enable external access
-      proxy: false,
-    },
-    function (err, bs) {
-      // Log the network URL after initialization
-      if (!err) {
-        console.log("\n✅ [Browsersync] Server started successfully!");
-        console.log("\n📍 Access URLs:");
-        console.log("   Local:    http://localhost:3000");
-        console.log("   Network:  http://192.168.0.105:3000");
+// Get local IP address
+function getLocalIP() {
+  const interfaces = os.networkInterfaces();
+  for (const name of Object.keys(interfaces)) {
+    for (const iface of interfaces[name]) {
+      // Skip internal (loopback) and non-IPv4 addresses
+      if (iface.family === "IPv4" && !iface.internal) {
+        return iface.address;
       }
     }
-  );
+  }
+  return "192.168.0.105"; // Fallback
+}
+
+// Browser Sync
+function serve() {
+  const localIP = getLocalIP();
+
+  const bsConfig = {
+    server: {
+      baseDir: "./dist",
+    },
+    port: 3000,
+    host: "0.0.0.0", // Listen on all network interfaces
+    open: false, // Don't auto-open browser
+    notify: false, // Disable notifications
+    ui: {
+      port: 3001,
+    },
+    online: true, // Enable network access
+  };
+
+  browserSync.init(bsConfig, function (err, bs) {
+    // Log the network URL after initialization
+    if (!err) {
+      console.log("\n✅ [Browsersync] Server started successfully!");
+      console.log("\n📍 Access URLs:");
+
+      // Get network URLs from BrowserSync
+      const options = bs.options;
+      let networkUrl = null;
+
+      if (options && options.urls) {
+        const urls = options.urls;
+        if (urls.local) {
+          console.log(`   Local:    ${urls.local}`);
+        } else {
+          console.log("   Local:    http://localhost:3000");
+        }
+        if (urls.external) {
+          networkUrl = urls.external;
+          console.log(`   Network:  ${networkUrl}`);
+        }
+      } else {
+        console.log("   Local:    http://localhost:3000");
+      }
+
+      if (!networkUrl) {
+        console.log(`   Network:  http://${localIP}:3000`);
+      }
+    } else {
+      console.error("❌ Error starting BrowserSync:", err);
+    }
+  });
 
   gulp.watch(paths.scss.src, compileScss);
   gulp.watch("src/components/**/*.scss", compileScss);
